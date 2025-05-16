@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>FruitCal - Calorie Tracker</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="manifest" href="manifest.json" />
+<meta name="theme-color" content="#ffffff" />
+  <style>
+    body { font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 1em; }
+    input, select, button { display: block; margin: 0.5em 0; width: 100%; padding: 0.5em; }
+    #entries div { border-bottom: 1px solid #ddd; padding: 0.5em 0; }
+  </style>
+</head>
+<body>
+  <h1>🍎 FruitCal</h1>
+
+  <input type="text" id="food" placeholder="Food name" />
+  <input type="number" id="servingAmount" placeholder="Serving Amount" value="1" />
+  <select id="servingUnit">
+    <option value="g">grams (g)</option>
+    <option value="cup">cup</option>
+    <option value="tbsp">tablespoon (tbsp)</option>
+    <option value="tsp">teaspoon (tsp)</option>
+    <option value="oz">ounce (oz)</option>
+    <option value="ml">milliliters (ml)</option>
+  </select>
+  <input type="number" id="calories" placeholder="Calories" />
+  <input type="number" id="protein" placeholder="Protein (g)" />
+  <input type="number" id="carbs" placeholder="Carbs (g)" />
+  <input type="number" id="fat" placeholder="Fat (g)" />
+  <input type="number" id="sodium" placeholder="Sodium (mg)" />
+  <select id="meal">
+    <option value="breakfast">Breakfast</option>
+    <option value="lunch">Lunch</option>
+    <option value="dinner">Dinner</option>
+    <option value="snack">Snack</option>
+  </select>
+  <input type="text" id="barcode" placeholder="Scan or enter barcode" />
+  <button onclick="fetchFoodFromBarcode(document.getElementById('barcode').value)">Scan</button>
+  <button onclick="addEntry()">Add Entry</button>
+
+  <h3>Today's Totals</h3>
+  <div id="totals">Loading...</div>
+  <canvas id="macroChart" width="200" height="200"></canvas>
+
+  <h3>Log</h3>
+  <div id="entries"></div>
+
+  <h3>Weight Tracking</h3>
+  <input type="number" id="weightInput" placeholder="Enter weight (lbs)" />
+  <button onclick="saveWeight()">Save</button>
+  <canvas id="weightChart" width="400" height="200"></canvas>
+
+  <h3>Body Fat & BMI Estimator</h3>
+  <input type="number" id="height" placeholder="Height (inches)" />
+  <input type="number" id="waist" placeholder="Waist (inches)" />
+  <input type="number" id="neck" placeholder="Neck (inches)" />
+  <input type="number" id="hip" placeholder="Hip (inches - optional)" />
+  <select id="sex">
+    <option value="male">Male</option>
+    <option value="female">Female</option>
+  </select>
+  <button onclick="calculateBodyFat()">Estimate</button>
+  <div id="bodyFatOutput"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
